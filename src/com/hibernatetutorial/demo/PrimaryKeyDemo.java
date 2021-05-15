@@ -44,7 +44,7 @@ public class PrimaryKeyDemo {
 					// commit transaction
 					session.getTransaction().commit();
 					
-					System.out.println("Done...");
+					System.out.println("Done!");
 				}
 				
 				finally {
