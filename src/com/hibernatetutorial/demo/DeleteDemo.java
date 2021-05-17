@@ -8,7 +8,7 @@ import com.hibernatetutorial.demo.entity.Instructor;
 import com.hibernatetutorial.demo.entity.InstructorDetail;
 import com.hibernatetutorial.demo.entity.Student;
 
-public class CreateDemo {
+public class DeleteDemo {
 
 	public static void main(String[] args) {
 
@@ -34,60 +34,37 @@ public class CreateDemo {
 					new InstructorDetail(
 							"http://luv2code.com/youtube",
 							"Luv 2 code");
-			
-			
 			*/
 			
-			// create the objects
-			/*Instructor tempInstructor = 
+			Instructor tempInstructor = 
 					new Instructor("Madhu", "Patel", "madhu@luv2code.com");
-						
+			
 			InstructorDetail tempInstructorDetail = 
 					new InstructorDetail(
 							"http://www.youtube.com",
 							"Guitar");
 			
+			// associate the objects
 			tempInstructor.setInstructorDetail(tempInstructorDetail);
-			*/
+
+			
 			
 			// start the transaction
 			session.beginTransaction();
 			
-			//session.save(tempInstructor);
 			
-			// get instructor by primary key / id
-			 int theId = 1;
-			Instructor tempInstructor = 
-					session.get(Instructor.class, theId);
-			
-			System.out.println("------------       -----------------");
-			System.out.println("Found Intructor: " + tempInstructor);
-			System.out.println("------------       -----------------");
-			
-			
-			// delete the instructor
-			if(tempInstructor != null) {
-				
-				System.out.println("------------       -----------------");
-				System.out.println("Deleting: " + tempInstructor);
-				System.out.println("------------       -----------------");
-				
-				// Note: will ALSO delete associated "details" object
-				// because of CascadeType.ALL
-				//
-				session.delete(tempInstructor);
-			}
-			
-			
-			
+			// save the instructor
+			//
+			// Note: this will ALSO save the details object
+			// because of CascadeType.ALL
+			//
+			System.out.println("Saving instructor: " + tempInstructor);
+			session.save(tempInstructor);
 			
 			// commit transaction
 			session.getTransaction().commit();
 			
-			System.out.println("------------       -----------------");
-			System.out.println("Done!!");
-			System.out.println("------------       -----------------");
-			
+			System.out.println("Done!");
 		}
 		finally {
 			factory.close();
